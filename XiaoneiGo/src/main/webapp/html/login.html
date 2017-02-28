@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+</head>
+<body>
+<form id="formtest" action="" method="post">
+    <p>输入姓名:<input type="text" name="username" id="username" /></p>
+    <p>输入密码:<input type="text" name="password" id="password" /></p>
+</form>
+<!--<input type="button" id="login" value="登录" onclick="login()">-->
+<div id="ta">
+    <p>
+        <button @click="login()">登录</button>
+    </p>
+    <p>{{message}}</p>
+</div>
+</body>
+<script type="text/javascript">
+    var userVue=new Vue({
+        el:'#ta',
+        data:{
+            message:null
+        },
+        methods:{
+            login:function () {
+                username=$("#username").val();
+                    password=$("#password").val();
+                var _self = this;
+                $.ajax({
+                    url:"/username",
+                    type:"post",
+                    dataType:"json",
+                    data:{"username":username},
+                    success:function(data){
+                        if (data) {
+                            console.log(data);
+                            _self.message=data.sex;
+                        }
+                    },
+                    error:function () {
+                        alert("失败");
+                    }
+                })
+            }
+        }
+    })
+</script>
+</html>
+    <!--<table>-->
+        <!--<tr v-for="user in userlist">-->
+            <!--<td>{{user.username}}</td>-->
+            <!--<td>{{user.password}}</td>-->
+            <!--<td>{{user.sex}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
+<!--</body>-->
+<!--<script type="text/javascript">-->
+    <!--var userVue=new Vue({-->
+        <!--el:'#ta',-->
+        <!--data:{-->
+            <!--userlist:null-->
+        <!--},-->
+        <!--methods:{-->
+               <!--login:function () {-->
+                   <!--username=$("#username").val(),-->
+                   <!--password=$("#password").val()-->
+                   <!--var _self = this;-->
+                   <!--$.ajax({-->
+                  <!--url:"/sex",-->
+                  <!--type:"post",-->
+                  <!--dataType:"json",-->
+                  <!--data:{"sex":username},-->
+                  <!--success:function(data){-->
+                 <!--if (data) {-->
+                     <!--console.log(data);-->
+                     <!--_self.userlist = data;-->
+    <!--}-->
+    <!--},-->
+                 <!--error:function () {-->
+                 <!--alert("失败");-->
+    <!--}-->
+    <!--});-->
+               <!--}-->
+        <!--}-->
+    <!--})-->
+<!--//function login() {-->
+<!--//        username=$("#username").val(),-->
+<!--//        password=$("#password").val()-->
+<!--//    $.ajax({-->
+<!--//              url:"/username",-->
+<!--//              type:"post",-->
+<!--////contentType:"application/json;charset=utf-8",-->
+<!--//              dataType:"json",-->
+<!--//              data:{"username":username},-->
+<!--//               success:function(data){-->
+<!--//                   if (data) {-->
+<!--//                       alert(data.toString());-->
+<!--//                       console.log(data);-->
+<!--//                       alert(data.username);-->
+<!--//                       alert(data.date);-->
+<!--//-->
+<!--//                   }-->
+<!--//               },-->
+<!--//               error:function () {-->
+<!--//                   alert("失败");-->
+<!--//               }-->
+<!--//           });-->
+<!--//-->
+<!--//}-->
+
+
